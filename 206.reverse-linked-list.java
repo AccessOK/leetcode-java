@@ -64,8 +64,39 @@
  * }
  */
 class Solution {
+
+    public class ListNode {
+        int val;
+        ListNode next;
+        ListNode() {}
+        ListNode(int val) {
+            this.val = val; 
+        }
+        ListNode(int val, ListNode next) {
+            this.val = val;
+            this.next = next; 
+        }
+    }
+
     public ListNode reverseList(ListNode head) {
-        
+        if(head==null||head.next==null){
+            return head;
+        }
+        ListNode tmpNode=head.next;
+        head.next=null;
+        while(tmpNode.next!=null){
+            //标记即将反转的节点
+            ListNode tmp=tmpNode;
+            //下一个节点非空，tmp指针后移
+            tmpNode=tmpNode.next;
+            //反转节点
+            tmp.next=head;
+            //head节点迁移
+            head=tmp;
+        }
+        tmpNode.next=head;
+        head=tmpNode;
+        return head;
     }
 }
 // @lc code=end
